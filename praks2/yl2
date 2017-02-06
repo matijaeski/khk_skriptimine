@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# muljed
+#
+echo "Mati Jaeski"			# Väljasta reavahetusega Mati Jaeski
+echo "ISP16"				# Väljasta reavahetusega ISP16
+echo "Antud aine tundub üsnagi huvitav"	# Väljasta reavahetusega minu muljed
+echo "Arvan, et olen kõikides tundides asjast aru saanud, kuid kindlasti on veel palju õppimisruumi"	# Väljasta reavahetusega minu muljed
+echo "Olen väheste sõnadega mees, seega pole midagi muud öelda."	#Väljasta jutumärkides esinev lause
+#
+
+# skripti lõpp
