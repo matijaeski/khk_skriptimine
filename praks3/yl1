@@ -1,5 +1,11 @@
 #!/bin/bash
 #
-#muutujate kasutamise näide
+# muutuja kasutamise näide
 #
-#
+kasutaja=`whoami`
+kell=`date +"%H:%M"`
+kuupaev=`date +"%d. %B"`
+
+echo "Tere $kasutaja" #väljastan vastava muutuja väärtuse koos seletusega
+echo "Kell on $kell" #väljastan muutuja kellaaja
+echo "Täna on $kuupaev" #väljastan muutuja kuupäeva
