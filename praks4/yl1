@@ -2,7 +2,11 @@
 #
 	echo -n "Sisesta arv: "
 read arv
-if [ $arv -gt 0 ]
-then	echo "$arv on positiivne."
-else	echo "$arv on negatiivne."
+if [ $arv -gt 0 ]; then		#kui arv > 0 siis echo
+	echo "$arv on positiivne."
+elif [ $arv -lt 0 ]; then	#muidu kui arv < 0 siis echo
+	echo "$arv on negatiivne."
+else
+	echo "$arv on neutraalne."
 fi
+
