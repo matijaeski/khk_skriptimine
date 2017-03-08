@@ -1,12 +1,24 @@
 #!/bin/bash
 #
-	echo -n "Sisesta arv: "
-read arv
+# arvu positiivsuse/negatiivsuse kontroll
+#
+# kontrollime, kas kasutaja sisestas käsureale 1 parameetri
+# kui mitte, väljasta kasutusjuhend.
+if [ $# -ne 1 ]; then
+	echo "Kasutusjuhend"
+	echo "$0 number"
+	echo "näiteks: $0 5"
+else
+arv=$1
+# küsi väärtust kasutajalt.
+# kontrollime, kas arv on positiivne
+# sel juhul arv peab olema suurem kui 0
 if [ $arv -gt 0 ]; then		#kui arv > 0 siis echo
 	echo "$arv on positiivne."
 elif [ $arv -lt 0 ]; then	#muidu kui arv < 0 siis echo
 	echo "$arv on negatiivne."
 else
 	echo "$arv on neutraalne."
+fi
 fi
 
