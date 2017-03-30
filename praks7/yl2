@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# tsükkel
+
+	echo -n "Sisesta ridade arv: "
+read ridadearv
+	echo -n "Sisesta tärnide arv: "
+read tarnid 
+
+for (( i = 1 ; i <= $ridadearv ; i++ ))
+do
+	for (( j = 1 ; j <= $tarnid ; j++ ))
+	do
+		echo -n "*"
+	done
+echo ""
+done
