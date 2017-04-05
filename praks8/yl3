@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# tsükliga kujundid: Tärnid, ringid, ristid.
+echo -n "Sisesta ridade arv: "
+read rida
+#tärnid
+for ((r=1; r<$rida+2; r++))
+do
+echo -n "$r "
+	for (( v=1; v<$(($rida+1-$r+1)); v++))
+	do
+		echo -n "*"
+done
+#täpid
+for ((v=1; v<$r; v++))
+do
+	echo -n "°"
+done
+#ristid
+for ((v=0; v<$r; v++))
+do
+	echo -n "+"
+done
+#reavahetus pärsat lõppu
+echo ""
+done
