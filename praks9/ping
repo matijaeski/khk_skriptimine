@@ -4,12 +4,25 @@ pun=`tput setaf 1`	#punane värv
 roh=`tput setaf 2`	#roheline värv
 reset=`tput sgr0`	#tagasi originaalvärvi juurde
 
-for ip in 172.23.13.{20..50} 
-	do
-		ping -c 2 $ip > /dev/null
+kp=$(date +"%H:%m-%d.%m.%Y")
+
+echo -n "Sisesta IP vahemiku algus: "
+read algus					#küsi vahemiku algust.
+echo -n "Sisesta IP vahemiku lõpp: "
+read lopp					#küsi vahemiku lõppu
+
+for ((tee=$algus; tee<=$lopp; tee++))
+do
+	ip="172.23.13.$tee"
+	ping -c 2 $ip > /dev/null
 		if [ $? -eq 0 ]; then
-			echo " ${roh}$ip - OK${reset}"
+			echo " ${roh}$ip - OK" >> ./ping-$kp.log
+			echo " ${roh}$ip - OK"
+			echo "$reset" >> ./ping-$kp.log
+
 		else
-			echo " ${pun}$ip - NOT OK${reset}"
+			echo " ${pun}$ip - NOT OK" >> ./ping-$kp.log
+			echo " ${pun}$ip - NOT OK"
+			echo "$reset" >> ./ping-$kp.log
 		fi
-	done
+done
