@@ -1,8 +1,8 @@
 #!/bin/bash
 # Pingimine range'is 172.23.13.20 - 172.23.13.40
-pun=`tput setaf 1`
-roh=`tput setaf 2`
-reset=`tput sgr0`
+pun=`tput setaf 1`	#punane värv
+roh=`tput setaf 2`	#roheline värv
+reset=`tput sgr0`	#tagasi originaalvärvi juurde
 
 for ip in 172.23.13.{20..50} 
 	do
