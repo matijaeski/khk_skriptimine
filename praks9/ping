@@ -1,0 +1,15 @@
+#!/bin/bash
+# Pingimine range'is 172.23.13.20 - 172.23.13.40
+pun=`tput setaf 1`
+roh=`tput setaf 2`
+reset=`tput sgr0`
+
+for ip in 172.23.13.{20..50} 
+	do
+		ping -c 2 $ip > /dev/null
+		if [ $? -eq 0 ]; then
+			echo " ${roh}$ip - OK${reset}"
+		else
+			echo " ${pun}$ip - NOT OK${reset}"
+		fi
+	done
