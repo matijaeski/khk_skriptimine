@@ -34,7 +34,6 @@ do
 			echo " ${pun}$ip - NOT OK"
 			echo "$reset" >> "./ping-logs/$IP1/$algus-$lopp/$kp.log"
 		fi
-# tput sgr0 #taastab algvärvi
 done
-echo "${roh} Logs saved in: ./ping-logs/IP/IP range/time-date.log"
+echo "${roh} Logid on salvestatud järgmises kaustas: ./ping-logs/IP/IP range/time-date.log"
 tput sgr0
