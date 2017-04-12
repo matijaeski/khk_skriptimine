@@ -1,28 +1,40 @@
 #!/bin/bash
-# Pingimine range'is 172.23.13.20 - 172.23.13.40
+# Pingimine kasutaja poolt sisestatud IP vahemikus.
 pun=`tput setaf 1`	#punane värv
 roh=`tput setaf 2`	#roheline värv
-reset=`tput sgr0`	#tagasi originaalvärvi juurde
+reset=`tput sgr0`	#taastab algvärvi juurde
 
-kp=$(date +"%H:%m-%d.%m.%Y")
+kp=$(date +"%H.%M-%d.%m.%Y")
 
+echo "Syntax: ${roh} 172.23.13 $reset"
+echo -n "Sisesta IP algus: "
+read IP1
+
+echo "Syntax: ${roh} 30 $reset"
 echo -n "Sisesta IP vahemiku algus: "
-read algus					#küsi vahemiku algust.
+read algus					#küsi vahemiku algust
+
+echo "Syntax: ${roh} 35 $reset"
 echo -n "Sisesta IP vahemiku lõpp: "
 read lopp					#küsi vahemiku lõppu
 
 for ((tee=$algus; tee<=$lopp; tee++))
 do
-	ip="172.23.13.$tee"
+	ip="$IP1.$tee"
+	mkdir -p ./ping-logs/$IP1/$algus-$lopp
 	ping -c 2 $ip > /dev/null
+
 		if [ $? -eq 0 ]; then
-			echo " ${roh}$ip - OK" >> ./ping-$kp.log
+			echo " ${roh}$ip - OK" >> "./ping-logs/$IP1/$algus-$lopp/$kp.log"
 			echo " ${roh}$ip - OK"
-			echo "$reset" >> ./ping-$kp.log
+			echo "$reset" >> "./ping-logs/$IP1/$algus-$lopp/$kp.log"
 
 		else
-			echo " ${pun}$ip - NOT OK" >> ./ping-$kp.log
+			echo " ${pun}$ip - NOT OK" >> "./ping-logs/$IP1/$algus-$lopp/$kp.log"
 			echo " ${pun}$ip - NOT OK"
-			echo "$reset" >> ./ping-$kp.log
+			echo "$reset" >> "./ping-logs/$IP1/$algus-$lopp/$kp.log"
 		fi
+# tput sgr0 #taastab algvärvi
 done
+echo "${roh} Logs saved in: ./ping-logs/IP/IP range/time-date.log"
+tput sgr0
