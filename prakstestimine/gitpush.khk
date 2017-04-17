@@ -65,13 +65,12 @@ echo ""
 
 echo "$yel Sisesta pushitava faili nimi: "
 echo -n "$gre $path/praks$praksnr/"
-read file
+read file $reset
 git add $path/praks$praksnr/$file
 
 echo "$yel Sisesta kommentaar"
 echo -n "$yel Commit:$gre "
-read comm
-tput setaf 2
+read comm $reset
 git commit -m "$comm"
 
 echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
@@ -101,13 +100,12 @@ git add $path/praks$praksnr/$file
 
 echo "$yel Sisesta kommentaar"
 echo -n "$yel Commit:$gre "
-read comm
-tput setaf 2
+read comm $reset
 git commit -m "$comm"
 
 echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
 echo -n "$yel Repositoorium:$gre "
-read repo
+read repo $reset
 tput setaf 6
 git push -uf $repo master
 tput sgr0 #return to original color.
