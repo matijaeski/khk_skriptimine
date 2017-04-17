@@ -47,7 +47,6 @@ echo "path=$filepath" >> .pushpath
 echo "$yel Tee salvestatud faili $cur/.pushpath"
 echo ""
 echo ""
-echo ""
 
 source .pushpath
 
@@ -90,7 +89,6 @@ echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
 echo ""
 tput setaf 6
 ls -a  $path/praks$praksnr/
-echo ""
 echo ""
 
 echo "$yel Sisesta pushitava faili nimi: "
