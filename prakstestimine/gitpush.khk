@@ -12,6 +12,7 @@ blu=`tput setaf 4`	#blue color.
 mag=`tput setaf 5`	#magenta color.
 cya=`tput setaf 6`	#cyan color.
 whi=`tput setaf 7`	#white color
+cur=`pwd`		#current path.
 
 clear
 
@@ -38,12 +39,12 @@ echo "#!/bin/bash" > .pushpath
 echo "# Määrab skriptimise kausta jaoks. Vajalik gitpush.khk skriptile." >> .pushpath
 echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde.(muuta saab failist .pushpath; see on peidetud)"
 echo "$red sisesta oma SKRIPTIMISE kausta tee.(ILMA VIIMASE KALDKRIIPSUTA!!!) |$gre Näide: /home/user/skriptimine"
-echo "$yel Kausta tee: "
+echo -n "$gre Kausta tee: "
 read filepath
 tput sgr0
 
 echo "path=$filepath" >> .pushpath
-echo "$yel Tee salvestatud faili ./.pushpath"
+echo "$yel Tee salvestatud faili $cur/.pushpath"
 echo ""
 echo ""
 echo ""
@@ -76,7 +77,7 @@ git commit -m "$comm"
 echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
 echo -n "$yel Repositoorium:$gre "
 read repo
-tput setaf 2
+tput setaf 6
 git push -uf $repo master
 tput sgr0 #return to original color.
 
