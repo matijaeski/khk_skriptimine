@@ -1,0 +1,108 @@
+#!/bin/bash
+#
+# Easy git push for TKHK
+
+source .pushpath
+
+bla=`tput setaf 0`	#black color.
+red=`tput setaf 1`      #red color.
+gre=`tput setaf 2`      #green color.
+yel=`tput setaf 3`      #yellow color.
+blu=`tput setaf 4`	#blue color.
+mag=`tput setaf 5`	#magenta color.
+cya=`tput setaf 6`	#cyan color.
+whi=`tput setaf 7`	#white color
+
+clear
+
+tput setaf 5
+
+echo ""
+echo ""
+echo ""
+echo "   _____ _____ _______   _____  _    _  _____ _    _ "
+echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |"
+echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| |"
+echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |"
+echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | |"
+echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|"
+echo ""
+echo ""
+echo ""
+
+tput sgr0
+
+if [ ! -e ./.pushpath ]; then
+touch .pushpath
+echo "#!/bin/bash" > .pushpath
+echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde."
+echo "$red sisesta oma SKRIPTIMISE kausta tee.(ILMA VIIMASE KALDKRIIPSUTA!!!) |$gre Näide: /home/user/skriptimine"
+echo "Kausta tee: "
+read filepath
+tput sgr0
+
+echo "path=$filepath" >> .pushpath
+echo "$gre Tee salvestatud faili ./.pushpath"
+echo ""
+echo ""
+echo ""
+
+echo -n "Sisesta praksi number: "
+read praksnr
+
+echo "$gre Sisesta pushitava faili nimi: "
+echo -n "$gre $path/praks$praksnr/"
+read file
+git add $path/praks$praksnr/$file
+
+echo "$yel Sisesta kommentaar"
+echo -n "$yel Commit: "
+read comm
+git commit -m "$comm"
+
+echo "$gre Sisesta repositoorium ($red tavaliselt "skriptimine" )"
+echo -n "$gre Repositoorium: "
+read repo
+tput setaf 3
+git push -uf $repo master
+tput sgr0 #return to original color.
+
+else
+
+echo -n "Sisesta praksi number: "
+read praksnr
+
+echo "$gre Sisesta pushitava faili nimi: "
+echo -n "$gre $path/praks$praksnr/"
+read file
+git add $path/praks$praksnr/$file
+
+echo "$yel Sisesta kommentaar"
+echo -n "$yel Commit: "
+read comm
+git commit -m "$comm"
+
+echo "$gre Sisesta repositoorium ($red tavaliselt "skriptimine" )"
+echo -n "$gre Repositoorium: "
+read repo
+tput setaf 3
+git push -uf $repo master
+tput sgr0 #return to original color.
+
+fi
+tput setaf 5
+
+echo ""
+echo ""
+echo ""
+echo "   _____ _____ _______   _____  _    _  _____ _    _ "
+echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |"
+echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| |"
+echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |"
+echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | |"
+echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|"
+echo ""
+echo ""
+echo ""
+
+tput sgr0 #return to original color.
