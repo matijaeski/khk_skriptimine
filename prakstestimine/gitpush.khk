@@ -37,12 +37,12 @@ touch .pushpath
 echo "#!/bin/bash" > .pushpath
 echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde."
 echo "$red sisesta oma SKRIPTIMISE kausta tee.(ILMA VIIMASE KALDKRIIPSUTA!!!) |$gre Näide: /home/user/skriptimine"
-echo "Kausta tee: "
+echo "$yel Kausta tee: "
 read filepath
 tput sgr0
 
 echo "path=$filepath" >> .pushpath
-echo "$gre Tee salvestatud faili ./.pushpath"
+echo "$yel Tee salvestatud faili ./.pushpath"
 echo ""
 echo ""
 echo ""
@@ -50,44 +50,48 @@ echo ""
 source .pushpath
 
 echo -n "$yel Sisesta praksi number: "
+tput setaf 3
 read praksnr
 
-echo "$gre Sisesta pushitava faili nimi: "
+echo "$yel Sisesta pushitava faili nimi: "
 echo -n "$gre $path/praks$praksnr/"
 read file
 git add $path/praks$praksnr/$file
 
 echo "$yel Sisesta kommentaar"
-echo -n "$yel Commit: "
+echo -n "$yel Commit:$gre "
 read comm
+tput setaf 2
 git commit -m "$comm"
 
-echo "$gre Sisesta repositoorium $red( tavaliselt "skriptimine" )"
-echo -n "$gre Repositoorium: "
+echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
+echo -n "$yel Repositoorium:$gre "
 read repo
-tput setaf 3
+tput setaf 2
 git push -uf $repo master
 tput sgr0 #return to original color.
 
 else
 
-echo -n "$yel Sisesta praksi number: "
+echo -n "$yel Sisesta praksi number:$gre "
 read praksnr
 
-echo "$gre Sisesta pushitava faili nimi: "
+echo "$yel Sisesta pushitava faili nimi: "
 echo -n "$gre $path/praks$praksnr/"
 read file
+tput setaf 2
 git add $path/praks$praksnr/$file
 
 echo "$yel Sisesta kommentaar"
-echo -n "$yel Commit: "
+echo -n "$yel Commit:$gre "
 read comm
+tput setaf 2
 git commit -m "$comm"
 
-echo "$gre Sisesta repositoorium $red( tavaliselt "skriptimine" )"
-echo -n "$gre Repositoorium: "
+echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
+echo -n "$yel Repositoorium:$gre "
 read repo
-tput setaf 3
+tput setaf 2
 git push -uf $repo master
 tput sgr0 #return to original color.
 
