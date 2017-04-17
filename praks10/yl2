@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Kasutaja tervitamine kellaaja järgi.
+
+kp=$(date +"%H")	#määrab automaatselt kellaaja
+user=`whoami`		#määrab kasutaja
+pun=`tput setaf 1`      #määrab punase värvi.
+roh=`tput setaf 2`      #määrab rohelise värvi.
+kol=`tput setaf 3`      #määrab kollase värvi.
+sin=`tput setaf 4`      #määrab sinise värvi.
+reset=`tput sgr0`       #taastab originaalvärvi.
+
+#echo -n "$kol Palun sisestage tund: " 	#juhendab kasutajat.
+#read kp	#loeb kasutaja sisestuse ja määrab selle kellaajaks.
+#tput sgr0	#lõpetab värvid.
+
+if [ $kp -ge 0 -a $kp -lt 6 ]; then
+                echo "$kol Head ööd, $user!"					#0-6 ajal soovib head ööd.
+        elif [ $kp -lt 12 ]; then
+                echo "$kol Tere Hommikust, $user!"				#7-12 ajal väljastab tere hommikust.
+        elif [ $kp -lt 18 ]; then
+                echo "$kol Tere päevast, $user!"				#13-18 ajal väljastab tere päevast.
+        elif [ $kp -lt 22 ]; then
+                echo "$kol Tere õhtust, $user!"					#19-21 ajal väljastab tere õhtust.
+	elif [ $kp -lt 24 ]; then
+		echo "$kol Head ööd, $user!"					#22-23 ajal soovib head ööd.
+#	else
+#		echo "$pun Sisestatud tund ei ole 0 ja 23 vahel. $reset"	#väljastab igal muul korral.
+fi
+
+tput sgr0 #lõpetab värvid ja taastab õige.
+
+#skripti lõpp
