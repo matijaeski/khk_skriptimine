@@ -59,7 +59,7 @@ echo ""
 echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
 echo ""
 tput setaf 6
-ls -la $path/praks$praksnr/
+ls -a  $path/praks$praksnr/
 echo ""
 echo ""
 
@@ -90,7 +90,7 @@ echo ""
 echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
 echo ""
 tput setaf 6
-ls -la $path/praks$praksnr/
+ls -a  $path/praks$praksnr/
 echo ""
 echo ""
 
