@@ -35,5 +35,5 @@ do
 			echo "$reset" >> "./ping-logs/$IP1/$algus-$lopp/$kp.log"
 		fi
 done
-echo "${roh} Logid on salvestatud järgmises kaustas: ./ping-logs/IP/IP range/time-date.log"
+echo "${roh} Logid on salvestatud järgmises kaustas: ./ping-logs/$IP1/$algus-$lopp/$kp.log"
 tput sgr0
