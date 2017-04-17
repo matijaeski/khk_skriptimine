@@ -47,7 +47,7 @@ echo ""
 echo ""
 echo ""
 
-echo -n "Sisesta praksi number: "
+echo -n "$yel Sisesta praksi number: "
 read praksnr
 
 echo "$gre Sisesta pushitava faili nimi: "
@@ -69,7 +69,7 @@ tput sgr0 #return to original color.
 
 else
 
-echo -n "Sisesta praksi number: "
+echo -n "$yel Sisesta praksi number: "
 read praksnr
 
 echo "$gre Sisesta pushitava faili nimi: "
