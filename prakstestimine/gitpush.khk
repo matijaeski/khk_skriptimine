@@ -60,7 +60,7 @@ echo -n "$yel Commit: "
 read comm
 git commit -m "$comm"
 
-echo "$gre Sisesta repositoorium ($red tavaliselt "skriptimine" )"
+echo "$gre Sisesta repositoorium $red( tavaliselt "skriptimine" )"
 echo -n "$gre Repositoorium: "
 read repo
 tput setaf 3
