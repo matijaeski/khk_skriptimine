@@ -53,6 +53,13 @@ echo -n "$yel Sisesta praksi number: "
 tput setaf 3
 read praksnr
 
+tput setaf 6
+echo ""
+echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
+echo ""
+ls -la $path/praks$praksnr/
+echo ""
+echo ""
 echo "$yel Sisesta pushitava faili nimi: "
 echo -n "$gre $path/praks$praksnr/"
 read file
@@ -76,10 +83,17 @@ else
 echo -n "$yel Sisesta praksi number:$gre "
 read praksnr
 
+tput setaf 6
+echo ""
+echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
+echo ""
+ls -la $path/praks$praksnr/
+echo ""
+echo ""
+
 echo "$yel Sisesta pushitava faili nimi: "
 echo -n "$gre $path/praks$praksnr/"
 read file
-tput setaf 2
 git add $path/praks$praksnr/$file
 
 echo "$yel Sisesta kommentaar"
@@ -91,7 +105,7 @@ git commit -m "$comm"
 echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
 echo -n "$yel Repositoorium:$gre "
 read repo
-tput setaf 2
+tput setaf 6
 git push -uf $repo master
 tput sgr0 #return to original color.
 
