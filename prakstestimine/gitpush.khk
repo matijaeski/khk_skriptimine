@@ -35,7 +35,8 @@ tput sgr0
 if [ ! -e ./.pushpath ]; then
 touch .pushpath
 echo "#!/bin/bash" > .pushpath
-echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde."
+echo "# Määrab skriptimise kausta jaoks. Vajalik gitpush.khk skriptile." >> .pushpath
+echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde.(muuta saab failist .pushpath; see on peidetud)"
 echo "$red sisesta oma SKRIPTIMISE kausta tee.(ILMA VIIMASE KALDKRIIPSUTA!!!) |$gre Näide: /home/user/skriptimine"
 echo "$yel Kausta tee: "
 read filepath
@@ -53,13 +54,14 @@ echo -n "$yel Sisesta praksi number: "
 tput setaf 3
 read praksnr
 
-tput setaf 6
 echo ""
 echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
 echo ""
+tput setaf 6
 ls -la $path/praks$praksnr/
 echo ""
 echo ""
+
 echo "$yel Sisesta pushitava faili nimi: "
 echo -n "$gre $path/praks$praksnr/"
 read file
@@ -83,10 +85,10 @@ else
 echo -n "$yel Sisesta praksi number:$gre "
 read praksnr
 
-tput setaf 6
 echo ""
 echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
 echo ""
+tput setaf 6
 ls -la $path/praks$praksnr/
 echo ""
 echo ""
