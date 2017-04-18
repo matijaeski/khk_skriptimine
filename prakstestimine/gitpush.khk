@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 # Easy git push for TKHK
+#####
+#text colors.
 
 bla=`tput setaf 0`	#black color.
 red=`tput setaf 1`      #red color.
@@ -12,37 +14,36 @@ cya=`tput setaf 6`	#cyan color.
 whi=`tput setaf 7`	#white color
 cur=`pwd`		#current path.
 
+gitpush=`printf "\n\n\n   _____ _____ _______   _____  _    _  _____ _    _  \n  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | | \n | |  __  | |    | |    | |__) | |  | | (___ | |__| | \n | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  | \n | |__| |_| |_   | |    | |    | |__| |____) | |  | | \n  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_| \n\n\n"`
+goodpush=`printf "\n\n\n   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  \n  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ \n | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |\n | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |\n | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |\n  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ \n\n\n"`
+badpush=`printf "\n\n\n  _____  _    _  _____ _    _   ______      _____ _      ______ _____  \n |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ \n | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |\n |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |\n | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |\n |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ \n\n\n"`
+
+######
+
 clear
 
 tput setaf 5
 
-echo ""
-echo "   _____ _____ _______   _____  _    _  _____ _    _  "
-echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | | "
-echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| | "
-echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  | "
-echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | | "
-echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_| "
-echo ""
-echo ""
-echo ""
+echo "$gitpush"
 
 tput sgr0
 
-if [ ! -e ./.gitpush ]; then
+if [ ! -e "./.gitpush" ]; then
 touch .gitpush
 echo "#!/bin/bash" > .gitpush
-echo "# Määrab skriptimise kausta ja sisaldab ASCII art'i. Vajalik gitpush.khk skriptile." >> .gitpush
-echo "gitpushed=$(printf "\n\n\n   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  \n  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ \n | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |\n | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |\n | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |\n  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ \n\n\n")" >> .gitpush
-echo "gitfailed=$(printf "\n\n\n  _____  _    _  _____ _    _   ______      _____ _      ______ _____  \n |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ \n | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |\n |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |\n | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |\n |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ \n\n\n")" >> .gitpush
+echo "$(printf "\n #\n #\n #   _____ _____ _______   _____  _    _  _____ _    _  \n #  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | | \n # | |  __  | |    | |    | |__) | |  | | (___ | |__| | \n # | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  | \n # | |__| |_| |_   | |    | |    | |__| |____) | |  | | \n #  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_| \n #\n #\n")" >> .gitpush
 echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde.(muuta saab failist .gitpush; see on peidetud)"
-echo "$red sisesta oma SKRIPTIMISE kausta tee.(ILMA VIIMASE KALDKRIIPSUTA!!!) |$gre Näide: /home/user/skriptimine"
-echo -n "$gre Kausta tee: "
+echo "$red sisesta oma SKRIPTIMISE kausta absoluutne  path.(ILMA VIIMASE KALDKRIIPSUTA!!!) |$gre Näide: /home/user/skriptimine"
+echo -n "$gre Path: "
 read filepath
 tput sgr0
 
-echo "path=$filepath" >> .gitpush
-echo "$yel Tee salvestatud faili $cur/.gitpush"
+#	if [ ! -d "$filepath" ]; then			#kontrollib kas sisestatud on eksisteeriv directory.
+#	echo "$red Palun sisesta absoluutne path"
+
+
+echo "path=$filepath" >> .gitpush			#salvestab path'i .gitpush faili.
+echo "$yel Path salvestatud faili $cur/.gitpush"
 echo ""
 echo ""
 fi
@@ -72,68 +73,67 @@ echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
 echo -n "$yel Repositoorium:$gre "
 read repo
 tput setaf 6
-git push $repo master
+#git push --porcelain -uf $repo master
 tput sgr0 #return to original color.
 
 #flashing GIT PUSHED ASCII art.
-
-if [[ "$(git push --porcelain)" == *"Done"* ]]; then
+tput setaf 6
+if [[ "$(git push --porcelain -uf $repo master)" == *"Done"* ]]; then
 
 tput setaf 6
 clear
-echo "$gitpush"
+echo "$goodpush"
 
 sleep 0.25
 tput setaf 5
 clear
-echo "$gitpush"
+echo "$goodpush"
 
 sleep 0.25
 tput setaf 6
 clear
-echo "$gitpush"
+echo "$goodpush"
 
 sleep 0.25
 tput setaf 5
 clear
-echo "$gitpush"
+echo "$goodpush"
 
 sleep 0.25
 tput setaf 6
 clear
-echo "$gitpush"
+echo "$goodpush"
 
 sleep 0.25
 tput setaf 5
 clear
-echo "$gitpush"
+echo "$goodpush"
 
 else ###		If push fails.
 
-sleep 0.25
 tput setaf 1
 clear
-echo "$gitfail"
+echo "$badpush"
 
 sleep 0.25
 tput setaf 3
 clear
-echo "$gitfail"
+echo "$badpush"
 
 sleep 0.25
 tput setaf 1
 clear
-echo "$gitfail"
+echo "$badpush"
 
 sleep 0.25
 tput setaf 3
 clear
-echo "$gitfail"
+echo "$badpush"
 
 sleep 0.25
 tput setaf 1
 clear
-echo "$gitfail"
+echo "$badpush"
 
 fi
 
