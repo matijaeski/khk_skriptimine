@@ -2,8 +2,6 @@
 #
 # Easy git push for TKHK
 
-source .pushpath
-
 bla=`tput setaf 0`	#black color.
 red=`tput setaf 1`      #red color.
 gre=`tput setaf 2`      #green color.
@@ -31,61 +29,32 @@ echo ""
 
 tput sgr0
 
-if [ ! -e ./.pushpath ]; then
-touch .pushpath
-echo "#!/bin/bash" > .pushpath
-echo "# Määrab skriptimise kausta jaoks. Vajalik gitpush.khk skriptile." >> .pushpath
-echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde.(muuta saab failist .pushpath; see on peidetud)"
+if [ ! -e ./.gitpush ]; then
+touch .gitpush
+echo "#!/bin/bash" > .gitpush
+echo "# Määrab skriptimise kausta ja sisaldab ASCII art'i. Vajalik gitpush.khk skriptile." >> .gitpush
+echo "gitpushed=$(printf "\n\n\n   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  \n  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ \n | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |\n | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |\n | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |\n  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ \n\n\n")" >> .gitpush
+echo "gitfailed=$(printf "\n\n\n  _____  _    _  _____ _    _   ______      _____ _      ______ _____  \n |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ \n | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |\n |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |\n | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |\n |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ \n\n\n")" >> .gitpush
+echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde.(muuta saab failist .gitpush; see on peidetud)"
 echo "$red sisesta oma SKRIPTIMISE kausta tee.(ILMA VIIMASE KALDKRIIPSUTA!!!) |$gre Näide: /home/user/skriptimine"
 echo -n "$gre Kausta tee: "
 read filepath
 tput sgr0
 
-echo "path=$filepath" >> .pushpath
-echo "$yel Tee salvestatud faili $cur/.pushpath"
+echo "path=$filepath" >> .gitpush
+echo "$yel Tee salvestatud faili $cur/.gitpush"
 echo ""
 echo ""
+fi
 
-source .pushpath
-
-echo -n "$yel Sisesta praksi number: "
-tput setaf 3
-read praksnr
-
-echo ""
-echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
-echo ""
-tput setaf 6
-ls -a  $path/praks$praksnr/
-echo ""
-echo ""
-
-echo "$yel Sisesta pushitava faili nimi: "
-echo -n "$gre $path/praks$praksnr/"
-read file
-git add $path/praks$praksnr/$file
-
-echo "$yel Sisesta kommentaar"
-echo -n "$yel Commit:$gre "
-read comm
-git commit -m "$comm"
-
-echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
-echo -n "$yel Repositoorium:$gre "
-read repo
-tput setaf 6
-git push -uf $repo master
-tput sgr0 #return to original color.
-
-else
+source .gitpush
 
 echo -n "$yel Sisesta praksi number:$gre "
 read praksnr
 
 echo ""
-echo "$red Nimekiri $path/praks$praksnr/ asuvatest failidest."
+echo "$cya Nimekiri $path/praks$praksnr/ asuvatest failidest."
 echo ""
-tput setaf 6
 ls -a  $path/praks$praksnr/
 echo ""
 
@@ -103,10 +72,8 @@ echo "$yel Sisesta repositoorium $red( tavaliselt "skriptimine" )"
 echo -n "$yel Repositoorium:$gre "
 read repo
 tput setaf 6
-git push -uf $repo master
+git push $repo master
 tput sgr0 #return to original color.
-
-fi
 
 #flashing GIT PUSHED ASCII art.
 
@@ -114,164 +81,58 @@ if [[ "$(git push --porcelain)" == *"Done"* ]]; then
 
 tput setaf 6
 clear
-echo ""
-echo ""
-echo "   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  "
-echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ "
-echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |"
-echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |"
-echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |"
-echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ "
-echo ""
-echo ""
-echo ""
+$gitpush
 
 sleep 0.25
 tput setaf 5
 clear
-echo ""
-echo ""
-echo "   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  "
-echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ "
-echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |"
-echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |"
-echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |"
-echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ "
-echo ""
-echo ""
-echo ""
+$gitpush
 
 sleep 0.25
 tput setaf 6
 clear
-echo ""
-echo ""
-echo "   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  "
-echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ "
-echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |"
-echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |"
-echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |"
-echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ "
-echo ""
-echo ""
-echo ""
+$gitpush
 
 sleep 0.25
 tput setaf 5
 clear
-echo ""
-echo ""
-echo "   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  "
-echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ "
-echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |"
-echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |"
-echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |"
-echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ "
-echo ""
-echo ""
-echo ""
+$gitpush
 
 sleep 0.25
 tput setaf 6
 clear
-echo ""
-echo ""
-echo "   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  "
-echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ "
-echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |"
-echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |"
-echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |"
-echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ "
-echo ""
-echo ""
-echo ""
-
+$gitpush
 sleep 0.25
 tput setaf 5
 clear
-echo ""
-echo ""
-echo "   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  "
-echo "  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ "
-echo " | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |"
-echo " | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |"
-echo " | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |"
-echo "  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ "
-echo ""
-echo ""
-echo ""
+$gitpush
 
 else ###		If push fails.
 
 sleep 0.25
 tput setaf 1
 clear
-echo ""
-echo ""
-echo "  _____  _    _  _____ _    _   ______      _____ _      ______ _____  "
-echo " |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ "
-echo " | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |"
-echo " |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |"
-echo " | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |"
-echo " |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ "
-echo ""
-echo ""
+$gitfail
 
 sleep 0.25
 tput setaf 3
 clear
-echo ""
-echo ""
-echo "  _____  _    _  _____ _    _   ______      _____ _      ______ _____  "
-echo " |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ "
-echo " | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |"
-echo " |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |"
-echo " | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |"
-echo " |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ "
-echo ""
-echo ""
+$gitfail
 
 sleep 0.25
 tput setaf 1
 clear
-echo ""
-echo ""
-echo "  _____  _    _  _____ _    _   ______      _____ _      ______ _____  "
-echo " |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ "
-echo " | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |"
-echo " |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |"
-echo " | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |"
-echo " |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ "
-echo ""
-echo ""
+$gitfail
 
 sleep 0.25
 tput setaf 3
 clear
-echo ""
-echo ""
-echo "  _____  _    _  _____ _    _   ______      _____ _      ______ _____  "
-echo " |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ "
-echo " | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |"
-echo " |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |"
-echo " | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |"
-echo " |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ "
-echo ""
-echo ""
+$gitfail
 
 sleep 0.25
 tput setaf 1
 clear
-echo ""
-echo ""
-echo "  _____  _    _  _____ _    _   ______      _____ _      ______ _____  "
-echo " |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ "
-echo " | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |"
-echo " |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |"
-echo " | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |"
-echo " |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ "
-echo ""
-echo ""
+$gitfail
 
 fi
 
