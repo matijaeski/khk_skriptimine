@@ -81,58 +81,59 @@ if [[ "$(git push --porcelain)" == *"Done"* ]]; then
 
 tput setaf 6
 clear
-$gitpush
+echo "$gitpush"
 
 sleep 0.25
 tput setaf 5
 clear
-$gitpush
+echo "$gitpush"
 
 sleep 0.25
 tput setaf 6
 clear
-$gitpush
+echo "$gitpush"
 
 sleep 0.25
 tput setaf 5
 clear
-$gitpush
+echo "$gitpush"
 
 sleep 0.25
 tput setaf 6
 clear
-$gitpush
+echo "$gitpush"
+
 sleep 0.25
 tput setaf 5
 clear
-$gitpush
+echo "$gitpush"
 
 else ###		If push fails.
 
 sleep 0.25
 tput setaf 1
 clear
-$gitfail
+echo "$gitfail"
 
 sleep 0.25
 tput setaf 3
 clear
-$gitfail
+echo "$gitfail"
 
 sleep 0.25
 tput setaf 1
 clear
-$gitfail
+echo "$gitfail"
 
 sleep 0.25
 tput setaf 3
 clear
-$gitfail
+echo "$gitfail"
 
 sleep 0.25
 tput setaf 1
 clear
-$gitfail
+echo "$gitfail"
 
 fi
 
