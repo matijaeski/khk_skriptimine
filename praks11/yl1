@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+
+echo -n "Sisesta vahemiku algus: "
+read algus
+echo -n "Sisesta vahemiku lõpp: "
+read lopp
+
+for (( num=$algus; num <=$lopp; num++ ))
+do
+	failinimi="fail$num"
+	if [ -f $failinimi ]; then
+		echo "$failinimi juba eksisteerib"
+		echo -n "Kas soovid asendada uue failiga? y/n: "
+		read yn
+			if [ "$yn" = "y" -o "$yn" = "Y" ]; then
+				touch $failinimi
+			fi
+	else
+		touch $failinimi
+		echo "Failid loodud."
+	fi
+done
