@@ -27,7 +27,7 @@ for FILE1 in "$@"
 	rm $cur/.gitpush
 	done
 
-###### 
+######
 clear
 
 tput setaf 5
@@ -39,7 +39,10 @@ tput sgr0
 if [ ! -e "./.gitpush" ]; then #kui .gitpush fail puudub ehk esimene kasutus.
 	touch .gitpush
 	echo "#!/bin/bash" > .gitpush
-	echo "$(printf "\n #\n #\n #   _____ _____ _______   _____  _    _  _____ _    _  \n #  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | | \n # | |  __  | |    | |    | |__) | |  | | (___ | |__| | \n # | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  | \n # | |__| |_| |_   | |    | |    | |__| |____) | |  | | \n #  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_| \n #\n #\n")" >> .gitpush
+	echo >> .gitpush #tühirida
+	echo "$(printf "\n#\n#\n#   _____ _____ _______   _____  _    _  _____ _    _\n#  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |\n# | |  __  | |    | |    | |__) | |  | | (___ | |__| |\n# | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |\n# | |__| |_| |_   | |    | |    | |__| |____) | |  | |\n#  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|\n#\n#\n")" >> .gitpush
+	echo >> .gitpush #tühirida
+	echo >> .gitpush #tühirida
 	echo "$yel Sinu skriptimise kaust jäetakse järgmisteks kordadeks meelde.(muuta saab, kui käivitada käsk $gre./gitpush.khk reset$yel)"
 	echo "$red sisesta oma SKRIPTIMISE kausta absoluutne  path.(ILMA VIIMASE KALDKRIIPSUTA!!!) |$gre Näide: /home/user/skriptimine"
 	echo -n "$gre Path: "
