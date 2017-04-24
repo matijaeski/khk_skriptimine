@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+clear
+tput setaf 5
+echo "Tere tulemast menüüsse."
+echo "Tegevuste valik:"
+tput setaf 6
+echo "1 - Loo fail vastava nimega."
+echo "2 - Loo fail ja ava nanoga."
+echo "3 - Välju programmist."
+tput setaf 5
+echo -n "Palun vali oma tegevus: "
+read asi
+tput sgr0
+
+
+if [ $asi = 1 ]; then
+	echo -n "Sisesta failinimi mida soovid luua: "
+        read nimi
+        touch $nimi
+elif [ $asi = 2 ]; then
+	echo -n "Sisesta failinimi mida soovid luua: "
+	read nimi
+	touch $nimi
+	nano $nimi
+elif [ $asi = 3 ]; then
+	exit
+else
+	./yl2
+fi
