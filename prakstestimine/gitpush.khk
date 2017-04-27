@@ -18,15 +18,38 @@ gitpush=`printf "\n\n\n   _____ _____ _______   _____  _    _  _____ _    _  \n 
 goodpush=`printf "\n\n\n   _____ _____ _______   _____  _    _  _____ _    _ ______ _____  \n  / ____|_   _|__   __| |  __ \| |  | |/ ____| |  | |  ____|  __ \ \n | |  __  | |    | |    | |__) | |  | | (___ | |__| | |__  | |  | |\n | | |_ | | |    | |    |  ___/| |  | |\___ \|  __  |  __| | |  | |\n | |__| |_| |_   | |    | |    | |__| |____) | |  | | |____| |__| |\n  \_____|_____|  |_|    |_|     \____/|_____/|_|  |_|______|_____/ \n\n\n"`
 badpush=`printf "\n\n\n  _____  _    _  _____ _    _   ______      _____ _      ______ _____  \n |  __ \| |  | |/ ____| |  | | |  ____/\   |_   _| |    |  ____|  __ \ \n | |__) | |  | | (___ | |__| | | |__ /  \    | | | |    | |__  | |  | |\n |  ___/| |  | |\___ \|  __  | |  __/ /\ \   | | | |    |  __| | |  | |\n | |    | |__| |____) | |  | | | | / ____ \ _| |_| |____| |____| |__| |\n |_|     \____/|_____/|_|  |_| |_|/_/    \_\_____|______|______|_____/ \n\n\n"`
 
-###### Kui muutuja "reset" on sisestatud, kustutab .gitpush faili.
+###### Muutujad
 
-reset=$1
-
-for FILE1 in "$@"
-	do
-	rm $cur/.gitpush
-	done
-
+if [ $1 == reset ]; then
+		if [ -e ".gitpush" ];then
+		echo -n "$red Kas oled kindel, et soovid kustutada $yel.gitpush $red faili?$cya y/n: "
+		read del
+			if [ $del == y -o $del == Y ];then
+				rm $cur/.gitpush
+				echo "$gre $cur/.gitpush eemaldatud."
+				tput sgr0
+				exit
+			fi
+		elif [ ! -e ".gitpush" ]; then
+			echo "$red Fail .gitpush puudub!"
+			tput sgr0
+			exit
+		fi
+fi
+if [ $1 == where ]; then
+	source .gitpush
+	if [ -e ".gitpush" ]; then
+	echo "$gre Sinu skriptimise kaustaks on seatud $yel"$path""
+	tput sgr0
+	exit
+	else
+	echo "$red Fail .gitpush puudub!"
+	tput sgr0
+	exit
+	fi
+fi
+tput sgr0
+#done
 ######
 clear
 
