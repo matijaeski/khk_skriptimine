@@ -1,0 +1,26 @@
+#!/bin/bash
+# Mati Jaeski. Menu. Väljastab menüü.
+clear
+echo "Choose your dish."
+echo "Today's choice:"
+echo "1) steak and potatoes."
+echo "2) fish and chips."
+echo "3) soup and salad."
+echo -n "Please make a selection (1 or 2 or 3): "
+read asi
+
+
+if [ $asi = 1 ]; then
+	echo "Stick to your ribs."
+        echo "Watch your cholesterol."
+        echo "Enjoy your meal!"
+elif [ $asi = 2 ]; then
+	echo "British are coming!"
+	echo "Enjoy your meal!"
+elif [ $asi = 3 ]; then
+	echo "Heathy foods..."
+	echo "Dieting is so boring."
+	echo "Enjoy your meal!"
+else
+	./menu
+fi

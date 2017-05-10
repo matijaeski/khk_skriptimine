@@ -1,0 +1,25 @@
+#!/bin/bash
+# Mati Jaeski. roopkylik. Väljastab rööpküliku.
+
+echo -n "Sisesta ridade arv: "
+read rida
+#ridade arv
+for ((r=1; r<$rida+1; r++))
+do
+echo -n "$r "
+#tühikud
+for (( v=1; v<$(($rida+1-$r+1)); v++))
+	do
+		echo -n " "
+done
+#tärnid
+for (( i = $rida; i <= $rida; i++ ))
+do
+	for (( j = 1 ; j <= i ; j++ ))
+	do
+		echo -n "*"
+	done
+done
+#reavahetus pärast lõppu
+echo ""
+done

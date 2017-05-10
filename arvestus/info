@@ -1,0 +1,13 @@
+#!/bin/bash
+# Mati Jaeski. Info. Tervitab, väljastab kuupäeva, väljastab kalendrit.
+user=$(whoami)
+paev=$(date +"%d.%m.%Y")
+kell=$(date +"%H:%M")
+clear
+echo "Tere, $user"
+
+echo "Täna on $paev kell $kell"
+echo
+echo
+
+cal
